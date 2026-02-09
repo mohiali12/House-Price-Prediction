@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>House Price Prediction</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Poppins", "Segoe UI", sans-serif;
+        background:
+            linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+            url("/static/img1.jpg") center/cover no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card {
+        width: 520px;
+        background: rgba(255,255,255,0.18);
+        backdrop-filter: blur(14px);
+        border-radius: 18px;
+        padding: 28px 32px 30px;
+        box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+        color: #fff;
+    }
+
+    .title {
+        text-align: center;
+        font-size: 26px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        margin-bottom: 22px;
+    }
+
+    .form-group {
+        margin-bottom: 14px;
+    }
+
+    label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 6px;
+        letter-spacing: 0.4px;
+    }
+
+    input {
+        width: 100%;
+        height: 44px;
+        padding: 0 14px;
+        border-radius: 9px;
+        border: none;
+        font-size: 14px;
+        outline: none;
+    }
+
+    input:focus {
+        box-shadow: 0 0 0 2px #00c6ff;
+    }
+
+    .btn {
+        margin-top: 18px;
+        width: 100%;
+        height: 46px;
+        border-radius: 10px;
+        border: none;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: #fff;
+        background: linear-gradient(135deg, #00c6ff, #0072ff);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 25px rgba(0,0,0,0.35);
+    }
+
+    .result {
+        margin-top: 18px;
+        padding: 14px;
+        text-align: center;
+        background: rgba(255,255,255,0.22);
+        border-left: 4px solid #00c6ff;
+        border-radius: 8px;
+        font-size: 17px;
+        font-weight: 700;
+    }
+
+    .footer {
+        margin-top: 14px;
+        text-align: center;
+        font-size: 12px;
+        opacity: 0.85;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <div class="title">🏠 HOUSE PRICE PREDICTION</div>
+
+    <form method="POST">
+
+        <div class="form-group">
+            <label>Lot Area (sq ft)</label>
+            <input type="number" name="area" placeholder="e.g. 8000" required>
+        </div>
+
+        <div class="form-group">
+            <label>Overall Quality (1–10)</label>
+            <input type="number" name="quality" min="1" max="10" placeholder="e.g. 7" required>
+        </div>
+
+        <div class="form-group">
+            <label>Year Built</label>
+            <input type="number" name="age" placeholder="e.g. 2015" required>
+        </div>
+
+        <div class="form-group">
+            <label>Basement Area (sq ft)</label>
+            <input type="number" name="basement" placeholder="e.g. 1200" required>
+        </div>
+
+        <div class="form-group">
+            <label>Living Area (sq ft)</label>
+            <input type="number" name="living" placeholder="e.g. 1800" required>
+        </div>
+
+        <div class="form-group">
+            <label>Bedrooms</label>
+            <input type="number" name="bedrooms" placeholder="e.g. 3" required>
+        </div>
+
+        <div class="form-group">
+            <label>Bathrooms</label>
+            <input type="number" name="bathrooms" placeholder="e.g. 2" required>
+        </div>
+
+        <button class="btn" type="submit">PREDICT PRICE</button>
+    </form>
+
+    {% if prediction %}
+    <div class="result">
+        Predicted Price: {{ prediction | round(0) }}
+    </div>
+    {% endif %}
+
+    <div class="footer">
+        Machine Learning Based Price Estimation System
+    </div>
+</div>
+
+</body>
+</html>
